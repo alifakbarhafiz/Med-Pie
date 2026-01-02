@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  med-pie:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: med-pie-app
+    ports:
+      - "8501:8501"
+    volumes:
+      # Mount model weights if they're stored outside the container
+      # Uncomment and adjust path if needed:
+      # - ./models/weights:/app/models/weights:ro
+      
+      # Optional: Mount for persistent data/logs
+      - med-pie-data:/app/data
+    environment:
+      - STREAMLIT_SERVER_FILE_WATCHER_TYPE=poll
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    # Resource limits (adjust based on your needs)
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 2G
+
+volumes:
+  med-pie-data:
+

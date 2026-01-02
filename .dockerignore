@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation (not needed in container)
+docs/
+*.md
+!README.md
+
+# Tests (not needed in production)
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Scripts (not needed in container)
+scripts/
+setup.bat
+setup.sh
+run.bat
+run.sh
+run.ps1
+
+# Reference files (not needed in container)
+reference/
+
+# Config files (not needed, we create our own)
+config/pytest.ini
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+
+# Model weights - uncomment if you want to download them separately
+# models/weights/*.pth
+
+# Keep model weights directory structure but exclude large files if needed
+# Uncomment the line above if model weights are too large for Docker build
